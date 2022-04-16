@@ -1,0 +1,16 @@
+{
+  "name": "opo-the-bottlenose",
+  "version": "1.0.0",
+  "description": "A discord bot to guide study session conversations",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "nodejs",
+    "discord",
+    "bot"
+  ],
+  "author": "robin@weird.io",
+  "license": "ISC"
+}
