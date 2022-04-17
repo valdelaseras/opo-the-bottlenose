@@ -1,20 +1,22 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const description = require('../descriptions/start-introduction');
+const sharedDescription = require('../descriptions/shared');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('start-introduction')
-        .setDescription('Start the introduction talk helper')
-        .addStringOption(option => option
+        .setDescription( description.introduction )
+        .addBooleanOption( option => option
             .setName('ready')
-            .setDescription('Everybody ready? Y/N')),
+            .setDescription(`Everybody ready? Let's go!`)),
     async execute(interaction) {
-        const value = interaction.options.getString('ready');
+        const value = interaction.options.getBoolean('ready');
 
-        if (value === 'Y' || value === 'y') return interaction
-            .reply(`Let's have a conversation about our topic of the month. To start off, what do you already know about it?`);
-        if (value === 'N' || value === 'n') return interaction
+        if ( value === true ) return interaction
+            .reply( description.questionOne );
+        else if ( value === false ) return interaction
             .reply(`Call me again when you're ready, I'll wait!`);
 
-        return interaction.reply(`Sorry, that's not a valid option`);
+        return interaction.reply( sharedDescription.invalidCommand )
     },
 };
